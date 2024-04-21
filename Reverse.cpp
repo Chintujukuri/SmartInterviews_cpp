@@ -25,6 +25,13 @@ void reverse(char name[], int n)
     while (s < e)
     {
         swap(name[s++], name[e--]);
+        /* 
+        int temp=name[s];
+        name[s]=name[e];
+        name[e]=temp;
+        s++;
+        e--;
+        */
     }
 }
 
@@ -40,7 +47,7 @@ int getLength(char name[])
 
 int main()
 {
-    char name[20];
+    char name[20]; 
     cout << "enter name: ";
     cin >> name;
     cout << "your name: " << name << endl;

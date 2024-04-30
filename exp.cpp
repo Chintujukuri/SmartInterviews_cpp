@@ -1,27 +1,29 @@
-class Solution
+#include <iostream>
+using namespace std;
+
+int main()
 {
-public:
-    int minOperations(int k)
-    {
-        int sum = 0;
-        int operations = 0;
-        vector<int> nums = {1};
-        if (k == 1)
-            return 0;
+  
+        int n;
+        cin >> n;
 
-        while (sum < k)
-        {
-            for (int i = 1; i < k / 2; i++)
+        int arr[n];
+        for (int i = 0; i < n; i++)
+            cin >> arr[i];
+
+        long long xorSum = 0;
+        for (int i = 0; i < 32; i++)
+        { // Considering bits from 0 to 31
+            long long countOnes = 0;
+            for (int j = 0; j < n; j++)
             {
-                operations++;
-                nums[0]++;
+                if (arr[j] & (1 << i)) // Checking if ith bit is set
+                    countOnes++;
             }
-
-            sum += nums.back();
-            nums.push_back(nums.back());
-            operations++;
+            // Number of pairs with ith bit set is countOnes*(n-countOnes)
+            xorSum += (1LL << i) * countOnes * (n - countOnes);
         }
 
-        return operations;
-    }
-};
+        cout << xorSum * 2 << "\n";
+    return 0;
+}
